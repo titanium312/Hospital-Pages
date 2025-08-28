@@ -1,0 +1,192 @@
+<!-- BEGIN: Menú principal HSJ (acabado fino) -->
+<div id="hsj-menu" role="navigation" aria-label="Menú principal">
+    <style>
+      /* Paleta y base (suave) */
+      #hsj-menu{
+        --white:#fff; --black:#0f172a; --gray-700:#666;
+        --primary:#24c8f1; --primary-50:#c3f6f7; --primary-100:#a3d5f1;
+        --border:#eee; --shadow:0 8px 24px rgba(0,0,0,.08);
+        font:16px/1.6 system-ui,-apple-system,Segoe UI,Roboto,Ubuntu,Cantarell,Noto Sans,Arial;
+        color:var(--black); background:var(--white); position:sticky; top:0; z-index:1000;
+        border-bottom:1px solid var(--border);
+      }
+      #hsj-menu *{ box-sizing:border-box }
+      #hsj-menu a{ color:inherit; text-decoration:none }
+  
+      /* Barra */
+      #hsj-menu .bar{
+        max-width:1220px; margin:0 auto; padding:12px 16px;
+        display:flex; align-items:center; gap:14px;
+        transition:box-shadow .25s ease;
+      }
+      /* Sombra al hacer scroll */
+      #hsj-menu.scrolled .bar{ box-shadow:var(--shadow) }
+  
+      /* Logo opcional a la izquierda */
+      #hsj-menu .logo{ display:flex; align-items:center; gap:10px; margin-right:6px }
+      #hsj-menu .logo img{ height:28px; width:auto; display:block }
+      #hsj-menu .logo b{ font-weight:800; letter-spacing:.2px }
+  
+      /* Toggle móvil */
+      #hsj-menu .toggle{
+        margin-left:auto; display:none; border:1px solid var(--border);
+        background:var(--white); border-radius:10px; padding:8px 12px; cursor:pointer;
+      }
+  
+      /* Menú nivel 1 */
+      #hsj-menu .menu{ display:flex; gap:34px; list-style:none; margin:0; padding:0 }
+      #hsj-menu .menu > li{ position:relative }
+      #hsj-menu .menu > li > a,
+      #hsj-menu .menu > li > button{
+        position:relative; display:inline-flex; align-items:center; gap:8px;
+        padding:8px 2px; background:none; border:0; cursor:pointer;
+        text-transform:uppercase; letter-spacing:.35px; font-weight:700;
+      }
+  
+      /* Subrayado (activo/hover) */
+      #hsj-menu .menu > li > a::after,
+      #hsj-menu .menu > li > button::after{
+        content:""; position:absolute; left:0; right:0; bottom:-10px; height:3px;
+        background:var(--primary); transform:scaleX(0); transform-origin:left; transition:transform .22s ease;
+      }
+      #hsj-menu .menu > li:hover > a::after,
+      #hsj-menu .menu > li:hover > button::after{ transform:scaleX(1) }
+      #hsj-menu .menu > li.is-active > a::after{ transform:scaleX(1) }
+  
+      /* Chevron */
+      #hsj-menu .chev{ font-size:.9rem; line-height:1; transform:translateY(1px); transition:transform .2s ease }
+      #hsj-menu .menu > li.open > button .chev{ transform:translateY(1px) rotate(180deg) }
+  
+      /* Submenús */
+      #hsj-menu .sub{
+        list-style:none; margin:0; padding:8px; min-width:260px;
+        position:absolute; top:calc(100% + 12px); left:0; z-index:30; display:none;
+        background:var(--white); border:1px solid var(--border); border-radius:12px; box-shadow:var(--shadow);
+      }
+      #hsj-menu .sub a{ display:block; padding:10px 12px; border-radius:8px; white-space:nowrap }
+      #hsj-menu .sub a:hover{ background:var(--primary-50) }
+  
+      /* Mostrar sub en desktop por hover/focus */
+      @media (hover:hover){
+        #hsj-menu .menu > li.has-sub:hover > .sub,
+        #hsj-menu .menu > li.has-sub:focus-within > .sub{ display:block }
+      }
+  
+      /* Responsive */
+      @media (max-width: 980px){
+        #hsj-menu .toggle{ display:inline-flex; }
+        #hsj-menu .menu{
+          display:none; flex-direction:column; gap:0; width:100%;
+          margin-top:10px; border-top:1px solid var(--border); padding-top:6px;
+        }
+        #hsj-menu .menu.open{ display:flex }
+        #hsj-menu .menu > li{ width:100% }
+        #hsj-menu .menu > li > a,
+        #hsj-menu .menu > li > button{ width:100%; justify-content:space-between; padding:12px 6px }
+        #hsj-menu .menu > li > a::after,
+        #hsj-menu .menu > li > button::after{ bottom:0 } /* subrayado pegado al borde */
+        #hsj-menu .sub{
+          position:static; display:none; border:0; box-shadow:none; padding:0 0 8px 12px; min-width:auto;
+        }
+        #hsj-menu .menu > li.open > .sub{ display:block }
+      }
+    </style>
+  
+    <div class="bar">
+      <!-- Logo (opcional): <a class="logo" href="/"><img src="TU_LOGO.svg" alt=""><b>HSJ Ayapel</b></a> -->
+  
+      <button class="toggle" aria-expanded="false" aria-controls="hsj-menu-list">☰ Menú</button>
+  
+      <ul id="hsj-menu-list" class="menu" role="menubar">
+        <li data-match="/" class="is-active"><a href="/" role="menuitem">Home</a></li>
+  
+        <li class="has-sub" role="none" data-match="/quienes|/somos">
+          <button type="button" role="menuitem" aria-haspopup="true" aria-expanded="false">
+            Quienes somos <span class="chev">▾</span>
+          </button>
+          <ul class="sub" role="menu">
+            <li><a href="/quienes-somos/mision-vision" role="menuitem">Misión y visión</a></li>
+            <li><a href="/quienes-somos/equipo" role="menuitem">Nuestro equipo</a></li>
+            <li><a href="/quienes-somos/organigrama" role="menuitem">Organigrama</a></li>
+          </ul>
+        </li>
+  
+        <li class="has-sub" role="none" data-match="/atencion|/ciudadano">
+          <button type="button" role="menuitem" aria-haspopup="true" aria-expanded="false">
+            Atención al ciudadano <span class="chev">▾</span>
+          </button>
+          <ul class="sub" role="menu">
+            <li><a href="/historia-clinica" role="menuitem">Historia clínica</a></li>
+            <li><a href="/resultados" role="menuitem">Resultados de exámenes</a></li>
+            <li><a href="/pqrsdf" role="menuitem">PQRSDF</a></li>
+            <li><a href="/tramites" role="menuitem">Trámites</a></li>
+          </ul>
+        </li>
+  
+        <li class="has-sub" role="none" data-match="/gestion|/planeacion|/control|/financiera">
+          <button type="button" role="menuitem" aria-haspopup="true" aria-expanded="false">
+            Gestión institucional <span class="chev">▾</span>
+          </button>
+          <ul class="sub" role="menu">
+            <li><a href="/planeacion" role="menuitem">Planeación</a></li>
+            <li><a href="/gestion-y-control" role="menuitem">Gestión y control</a></li>
+            <li><a href="/financiera" role="menuitem">Financiera y contable</a></li>
+          </ul>
+        </li>
+  
+        <li data-match="/servicios"><a href="/servicios" role="menuitem">Servicios</a></li>
+        <li data-match="/participa"><a href="/participa" role="menuitem">Participa</a></li>
+        <li data-match="/transparencia"><a href="/transparencia" role="menuitem">Transparencia</a></li>
+      </ul>
+    </div>
+  
+    <script>
+      (() => {
+        const root = document.querySelector('#hsj-menu');
+        if(!root) return;
+        const btn = root.querySelector('.toggle');
+        const list = root.querySelector('.menu');
+  
+        // Sombra al hacer scroll
+        const onScroll = () => root.classList.toggle('scrolled', window.scrollY > 2);
+        onScroll(); window.addEventListener('scroll', onScroll, {passive:true});
+  
+        // Toggle menú móvil
+        btn.addEventListener('click', () => {
+          const open = list.classList.toggle('open');
+          btn.setAttribute('aria-expanded', open ? 'true' : 'false');
+        });
+  
+        // Dropdowns en móvil (abrir/cerrar)
+        root.querySelectorAll('.has-sub > button').forEach(b => {
+          b.addEventListener('click', () => {
+            const li = b.parentElement;
+            const open = li.classList.toggle('open');
+            b.setAttribute('aria-expanded', open ? 'true' : 'false');
+          });
+        });
+  
+        // Marcar activo por URL (opcional)
+        try {
+          const path = location.pathname.toLowerCase();
+          const items = root.querySelectorAll('.menu > li');
+          let marked = false;
+          items.forEach(li => {
+            const rx = li.getAttribute('data-match');
+            if (rx && new RegExp(rx).test(path)) {
+              li.classList.add('is-active'); marked = true;
+            } else {
+              li.classList.remove('is-active');
+            }
+          });
+          // Si nada coincide, dejemos Home activo
+          if(!marked){
+            items.forEach(li => li.classList.remove('is-active'));
+            const home = root.querySelector('.menu > li[data-match="/"]') || root.querySelector('.menu > li:first-child');
+            home && home.classList.add('is-active');
+          }
+        } catch(e){}
+      })();
+    </script>
+  </div>
+  <!-- END: Menú principal HSJ -->
