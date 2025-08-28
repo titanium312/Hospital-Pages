@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Formato Único — E.S.E. Hospital San Jorge de Ayapel</title>
+  <meta name="description" content="Solicitud de trámites y servicios del Hospital San Jorge de Ayapel." />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root{
+      --bg1: rgb(155,236,238);
+      --bg2: rgb(0,191,255);
+      --paper:#fff;
+      --text:#1f2937;
+      --muted:#6b7280;
+      --primary: rgb(0,191,255);
+      --primary-50: rgba(0,191,255,.08);
+      --primary-600:#008ec0;
+      --ring: 0 0 0 .22rem rgba(0,191,255,.28);
+      --radius:16px;
+      --shadow: 0 10px 30px rgba(2,8,20,0.06), 0 2px 8px rgba(2,8,20,0.06);
+    }
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{
+      margin:0; color:var(--text); font-family:Inter, system-ui, -apple-system, Segoe UI, Roboto, "Helvetica Neue", Arial;
+      line-height:1.5;
+      background:white;
+    }
+    header{
+      position:sticky; top:0; z-index:10;
+      background:linear-gradient(180deg, #fff, rgba(255,255,255,.95));
+      border-bottom:1px solid #eaf2f7; backdrop-filter:saturate(180%) blur(6px)
+    }
+    .container{max-width:860px; margin-inline:auto; padding: 1rem clamp(16px,3vw,24px)}
+    .topbar{display:flex; align-items:center; gap:14px; justify-content:space-between}
+    .brand{display:flex; align-items:center; gap:14px}
+    .brand img{height:54px; width:auto; filter: drop-shadow(0 2px 4px rgba(0,0,0,.08))}
+    .brand .title{font-weight:700; letter-spacing:.2px; color:#0f3b57}
+    .mini{font-size:.92rem; color:var(--muted)}
+    nav.breadcrumbs{display:flex; gap:.5rem; align-items:center; font-size:.92rem; color:var(--muted)}
+    nav.breadcrumbs a{color:inherit; text-decoration:none; padding:.1rem .25rem; border-radius:8px}
+    nav.breadcrumbs a:hover{color:#0f3b57; background:var(--primary-50)}
+
+    main{padding: 1.5rem 0 3rem}
+    .card{background:var(--paper); border-radius:var(--radius); box-shadow:var(--shadow); overflow:hidden}
+    .card-hd{
+      padding:18px 20px; border-bottom:1px solid #eef2f7;
+      background:linear-gradient(180deg, rgba(155,236,238,.18), rgba(0,191,255,.12));
+    }
+    .card-bd{padding:22px}
+    h1{margin:.25rem 0 0; font-size: clamp(1.2rem, 2.8vw, 1.6rem)}
+    h2{margin:0 0 .5rem; font-size:1.05rem}
+
+    /* 1 columna, móvil primero */
+    .row{display:grid; grid-template-columns:1fr; gap:16px}
+    label{display:block; font-size:.95rem; color:#374151; margin: 2px 0 6px}
+    input[type="text"], input[type="email"], input[type="tel"], input[type="date"], select, textarea{
+      width:100%; border:1px solid #dfe5ee; border-radius:12px; padding:14px 14px;
+      font:inherit; background:#fff; color:inherit; transition:.15s border,.15s box-shadow
+    }
+    textarea{min-height:120px; resize:vertical}
+    input:focus, select:focus, textarea:focus{outline:none; border-color:var(--primary); box-shadow:var(--ring)}
+    fieldset{border:1px solid #eef2f7; border-radius:14px; padding:16px; margin:0 0 18px; background:#fff}
+    legend{padding:0 .4rem; font-weight:600; color:#0f172a}
+    .help{font-size:.86rem; color:var(--muted); margin-top:6px}
+    .subtle{background:var(--primary-50); border:1px solid rgba(0,191,255,.18); border-radius:12px; padding:10px 12px; color:#0f3b57}
+
+    .grid2{display:grid; grid-template-columns:1fr; gap:12px}
+    .choices{display:grid; gap:10px}
+    .inline{display:flex; gap:16px; flex-wrap:wrap; align-items:center}
+    .choice{display:flex; align-items:center; gap:10px}
+
+    .actions{display:flex; gap:12px; justify-content:flex-end; padding-top:6px}
+    .btn{appearance:none; border:0; border-radius:14px; padding:13px 18px; font-weight:700; cursor:pointer; letter-spacing:.2px}
+    .btn-primary{background:var(--primary); color:#fff}
+    .btn-primary:hover{background:var(--primary-600)}
+    .btn-ghost{background:#eef2f7; color:#0f3b57}
+    .btn-ghost:hover{background:#e4edf5}
+
+    footer{margin-top:28px; border-top:1px solid #eaf2f7; background:#fff}
+    footer .footer-inner{display:flex; gap:16px; align-items:center; justify-content:space-between; flex-wrap:wrap}
+    footer .copy{color:var(--muted); font-size:.9rem}
+
+    /* Imprimir */
+    @media print{
+      header, footer { display:none }
+      body { background:#fff }
+      .card { box-shadow:none; border:0 }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="container topbar">
+      <div class="brand">
+        <div>
+          <div class="title">E.S.E. HOSPITAL SAN JORGE DE AYAPEL</div>
+          <div class="mini">Formato único de solicitud de trámites y servicios</div>
+        </div>
+      </div>
+    </div>
+    <div class="container">
+      <nav class="breadcrumbs" aria-label="Miga de pan">
+        <a href="https://hospitalsanjorgeayapel.com/" rel="noopener noreferrer">Inicio</a>
+        <span aria-hidden>›</span>
+        <span>Trámites y servicios</span>
+      </nav>
+    </div>
+  </header>
+
+  <main class="container">
+    <section class="card">
+      <div class="card-hd"><h1>FORMATO ÚNICO DE SOLICITUD DE TRÁMITES Y SERVICIOS</h1></div>
+      <div class="card-bd">
+
+        <p class="subtle">Este formulario es compatible con dispositivos móviles y protege datos personales conforme a la Ley 1581 de 2012.</p>
+
+        <form id="tramitesForm" novalidate>
+          <!-- 1. Datos del Usuario -->
+          <fieldset>
+            <legend>1. Datos del Usuario</legend>
+            <div class="row">
+              <div>
+                <label for="nombres">Nombres y Apellidos *</label>
+                <input id="nombres" name="nombres" type="text" autocomplete="name" required />
+              </div>
+
+              <div class="grid2">
+                <div>
+                  <label for="tipoDoc">Tipo de Documento *</label>
+                  <select id="tipoDoc" name="tipoDoc" required>
+                    <option value="">Seleccione…</option>
+                    <option>Cédula de Ciudadanía</option>
+                    <option>NUIP</option>
+                    <option>Cédula de Extranjería</option>
+                    <option>NIT</option>
+                    <option>Pasaporte</option>
+                  </select>
+                </div>
+                <div>
+                  <label for="numDoc">Número de Documento *</label>
+                  <input id="numDoc" name="numDoc" type="text" inputmode="numeric" required />
+                </div>
+              </div>
+
+              <div class="grid2">
+                <div>
+                  <label for="nacimiento">Fecha de Nacimiento *</label>
+                  <input id="nacimiento" name="nacimiento" type="date" required />
+                </div>
+                <div>
+                  <label for="telefono">Teléfono / Celular</label>
+                  <input id="telefono" name="telefono" type="tel" inputmode="numeric" autocomplete="tel" />
+                </div>
+              </div>
+
+              <div>
+                <label for="direccion">Dirección</label>
+                <input id="direccion" name="direccion" type="text" autocomplete="address-line1" />
+              </div>
+
+              <div class="grid2">
+                <div>
+                  <label for="correo">Correo electrónico</label>
+                  <input id="correo" name="correo" type="email" inputmode="email" autocomplete="email" />
+                </div>
+                <div>
+                  <label for="eps">EPS / Régimen de afiliación</label>
+                  <input id="eps" name="eps" type="text" />
+                </div>
+              </div>
+            </div>
+          </fieldset>
+
+          <!-- 2. Trámite o Servicio Solicitado -->
+          <fieldset>
+            <legend>2. Trámite o Servicio Solicitado *</legend>
+            <p class="help">Seleccione uno o varios trámites (marque con ✕/✓).</p>
+            <div class="choices">
+              <label class="choice"><input type="checkbox" name="tramites" value="Asignación de citas"> Asignación de citas para la prestación de servicios de salud</label>
+              <label class="choice"><input type="checkbox" name="tramites" value="Certificado de nacido vivo"> Certificado de nacido vivo</label>
+              <label class="choice"><input type="checkbox" name="tramites" value="Certificado de defunción"> Certificado de defunción</label>
+              <label class="choice"><input type="checkbox" name="tramites" value="Historia clínica"> Historia clínica (copia o resumen)</label>
+              <label class="choice"><input type="checkbox" name="tramites" value="Certificado laboral"> Solicitud de certificado laboral</label>
+              <label class="choice"><input type="checkbox" name="tramites" value="Dispensación de medicamentos"> Dispensación de medicamentos</label>
+              <label class="choice"><input type="checkbox" name="tramites" value="Urgencias"> Atención inicial de urgencias</label>
+              <label class="choice"><input type="checkbox" name="tramites" value="Certificado de vacunación"> Certificado de vacunación</label>
+              <label class="choice"><input type="checkbox" name="tramites" value="Carné CyD"> Carné de Crecimiento y Desarrollo</label>
+              <label class="choice"><input type="checkbox" name="tramites" value="Carné Prenatal"> Carné de Cuidado Prenatal</label>
+            </div>
+          </fieldset>
+
+          <!-- 3. Información Complementaria -->
+          <fieldset>
+            <legend>3. Información Complementaria</legend>
+            <div class="row">
+              <div>
+                <label for="dependencia">Dependencia o área responsable</label>
+                <input id="dependencia" name="dependencia" type="text" />
+              </div>
+              <div>
+                <label for="observaciones">Observaciones del solicitante</label>
+                <textarea id="observaciones" name="observaciones" placeholder="Describa observaciones o requisitos adicionales…"></textarea>
+              </div>
+            </div>
+          </fieldset>
+
+          <!-- 6. Autorizaciones -->
+          <fieldset>
+            <legend>6. Autorizaciones y Consentimientos *</legend>
+            <label class="choice">
+              <input id="autoriza" name="autoriza" type="checkbox" required>
+              Autorizo el uso de mis datos personales conforme a la Ley 1581 de 2012 y la política de tratamiento de datos del Hospital.
+            </label>
+          </fieldset>
+
+          <!-- 4 y 5. Uso institucional (plegable) -->
+          <details class="card" style="margin:12px 0">
+            <summary class="card-hd" style="cursor:pointer"><strong>Sección de uso institucional (Radicación y Entrega)</strong></summary>
+            <div class="card-bd">
+              <fieldset>
+                <legend>4. Radicación del Trámite</legend>
+                <div class="row">
+                  <div><label for="radicado">Número de radicado</label><input id="radicado" type="text" disabled></div>
+                  <div class="grid2">
+                    <div><label for="fecRecep">Fecha de recepción</label><input id="fecRecep" type="date" disabled></div>
+                    <div><label for="funcResp">Funcionario responsable</label><input id="funcResp" type="text" disabled></div>
+                  </div>
+                  <div>
+                    <label>Medio de entrega</label>
+                    <div class="inline">
+                      <label class="choice"><input type="radio" name="medioEntrega" disabled> Presencial</label>
+                      <label class="choice"><input type="radio" name="medioEntrega" disabled> Correo electrónico</label>
+                      <label class="choice"><input type="radio" name="medioEntrega" disabled> Ventanilla Única</label>
+                    </div>
+                  </div>
+                </div>
+              </fieldset>
+
+              <fieldset>
+                <legend>5. Entrega de la Respuesta</legend>
+                <div class="row">
+                  <div class="grid2">
+                    <div><label for="fecEntrega">Fecha de entrega</label><input id="fecEntrega" type="date" disabled></div>
+                    <div>
+                      <label>Medio de entrega</label>
+                      <div class="inline">
+                        <label class="choice"><input type="radio" name="medioResp" disabled> Presencial</label>
+                        <label class="choice"><input type="radio" name="medioResp" disabled> Digital</label>
+                      </div>
+                    </div>
+                  </div>
+                  <div><label for="funcEntrega">Funcionario que entrega</label><input id="funcEntrega" type="text" disabled></div>
+                  <div class="grid2">
+                    <div><label for="firmaUsuario">Firma del usuario</label><input id="firmaUsuario" type="text" disabled placeholder="(firma manuscrita en físico)"></div>
+                    <div><label for="ccTi">C.C. o T.I.</label><input id="ccTi" type="text" disabled></div>
+                  </div>
+                </div>
+              </fieldset>
+            </div>
+          </details>
+
+          <!-- Acciones -->
+          <div class="actions">
+            <button class="btn btn-ghost" type="reset">Limpiar</button>
+            <button class="btn btn-primary" type="submit">Enviar solicitud</button>
+          </div>
+        </form>
+
+        <!-- Resultado -->
+        <div id="resultado" class="subtle" role="status" style="display:none; margin-top:14px"></div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container footer-inner">
+      <div class="copy">© 2025 E.S.E. Hospital San Jorge de Ayapel — Todos los derechos reservados</div>
+      <div class="mini">Versión ligera, accesible y optimizada para móviles.</div>
+    </div>
+  </footer>
+
+  <script>
+    (function(){
+      const form = document.getElementById('tramitesForm');
+      const resultado = document.getElementById('resultado');
+
+      function alMenosUnTramite(){
+        return form.querySelectorAll('input[name="tramites"]:checked').length > 0;
+      }
+
+      form.addEventListener('submit', (e)=>{
+        // Validación nativa + al menos un trámite
+        if(!form.checkValidity() || !alMenosUnTramite()){
+          e.preventDefault();
+          if(!alMenosUnTramite()){
+            resultado.style.display='block';
+            resultado.textContent='Seleccione al menos un trámite o servicio.';
+          }else{
+            resultado.style.display='block';
+            resultado.textContent='Por favor revise los campos obligatorios.';
+          }
+          form.querySelector(':invalid')?.focus();
+          return;
+        }
+
+        // DEMO: evita envío real (integra tu endpoint aquí)
+        e.preventDefault();
+        const data = Object.fromEntries(new FormData(form));
+        resultado.style.display='block';
+        resultado.textContent = 'Solicitud validada localmente. Integra el envío al servidor para generar radicado.';
+        console.log('Payload listo para enviar:', data);
+
+        /* Ejemplo de integración:
+        fetch('https://tu-api/solicitudes', {
+          method:'POST',
+          headers:{'Content-Type':'application/json'},
+          body: JSON.stringify(Object.fromEntries(new FormData(form)))
+        })
+        .then(r => r.ok ? r.json() : Promise.reject(r))
+        .then(resp => { resultado.textContent = 'Radicado: ' + (resp.radicado || 'N/A'); })
+        .catch(()=> { resultado.textContent = 'No se pudo enviar. Intente nuevamente.'; });
+        */
+      });
+    })();
+  </script>
+</body>
+</html>
