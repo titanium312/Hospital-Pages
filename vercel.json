@@ -1,3 +1,7 @@
 {
-  "cleanUrls": true
+  "cleanUrls": true,
+  "rewrites": [
+    { "source": "/pages/(.*\\.html)", "destination": "/public/pages/$1" },
+    { "source": "/pages/([^./]+)$",  "destination": "/public/pages/$1.html" }
+  ]
 }
