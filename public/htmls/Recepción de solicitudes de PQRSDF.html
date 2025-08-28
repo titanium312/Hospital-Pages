@@ -3,8 +3,8 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Recepción de solicitudes de PQRSDF — E.S.E. Hospital San Jorge de Ayapel</title>
-  <meta name="description" content="Formulario para radicar Peticiones, Quejas, Reclamos, Sugerencias, Denuncias y Felicitaciones." />
+  <title>PQRSDF — E.S.E. Hospital San Jorge de Ayapel</title>
+  <meta name="description" content="Recepción de Peticiones, Quejas, Reclamos, Solicitudes de información, Denuncias, Sugerencias y Felicitaciones." />
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -12,7 +12,7 @@
     :root{
       --bg1: rgb(155,236,238);
       --bg2: rgb(0,191,255);
-      --paper:#ffffff;
+      --paper:#fff;
       --text:#1f2937;
       --muted:#6b7280;
       --primary: rgb(0,191,255);
@@ -25,13 +25,9 @@
     *{box-sizing:border-box}
     html,body{height:100%}
     body{
-      margin:0; color:var(--text);
-      font-family:Inter, system-ui, -apple-system, Segoe UI, Roboto, "Helvetica Neue", Arial;
+      margin:0; color:var(--text); font-family:Inter, system-ui, -apple-system, Segoe UI, Roboto, "Helvetica Neue", Arial;
       line-height:1.5;
-	  
-	  
-     background: white;
-
+      background:white;
     }
     header{
       position:sticky; top:0; z-index:10;
@@ -53,14 +49,13 @@
     .card{background:var(--paper); border-radius:var(--radius); box-shadow:var(--shadow); overflow:hidden}
     .card .card-hd{
       padding:18px 20px; border-bottom:1px solid #eef2f7;
-      background:linear-gradient(180deg, rgba(155,236,238,.25), rgba(0,191,255,.18));
+      background:linear-gradient(180deg, rgba(155,236,238,.18), rgba(0,191,255,.12));
     }
     .card .card-bd{padding:22px}
-
     h1{margin:.25rem 0 0; font-size: clamp(1.2rem, 2.8vw, 1.6rem)}
     h2{margin:0 0 .5rem; font-size:1.05rem}
 
-    /* Una sola columna y más cómodo */
+    /* 1 sola columna, móvil primero */
     .row{display:grid; grid-template-columns:1fr; gap:16px}
     label{display:block; font-size:.95rem; color:#374151; margin: 2px 0 6px}
     input[type="text"], input[type="email"], input[type="number"], input[type="tel"], select, textarea{
@@ -75,6 +70,11 @@
     legend{padding:0 .4rem; font-weight:600; color:#0f172a}
 
     .alert{background:var(--primary-50); color:#0f3b57; border:1px solid rgba(0,191,255,.25); padding:12px 14px; border-radius:12px; margin: 4px 0 16px}
+
+    .choice-list{display:grid; gap:10px}
+    .choice{display:flex; align-items:center; gap:10px}
+    .inline{display:flex; gap:16px; flex-wrap:wrap; align-items:center}
+    .inline .choice{margin-right:8px}
 
     .actions{display:flex; gap:12px; justify-content:flex-end; padding-top:6px}
     .btn{appearance:none; border:0; border-radius:14px; padding:13px 18px; font-weight:700; cursor:pointer; letter-spacing:.2px}
@@ -93,11 +93,9 @@
   <header>
     <div class="container topbar">
       <div class="brand">
-        <!-- Puedes reemplazar el SVG por tu escudo/logo -->
-       
         <div>
           <div class="title">E.S.E. HOSPITAL SAN JORGE DE AYAPEL</div>
-          <div class="mini">Recepción de solicitudes de PQRSDF</div>
+          <div class="mini">Formato de PQRSDF</div>
         </div>
       </div>
     </div>
@@ -105,7 +103,7 @@
       <nav class="breadcrumbs" aria-label="Miga de pan">
         <a href="https://hospitalsanjorgeayapel.com/" rel="noopener noreferrer">Inicio</a>
         <span aria-hidden>›</span>
-        <span>Recepción de solicitudes de PQRSDF</span>
+        <span>PQRSDF</span>
       </nav>
     </div>
   </header>
@@ -113,173 +111,150 @@
   <main class="container">
     <section class="card" aria-labelledby="title">
       <div class="card-hd">
-        <h1 id="title">Recepción de solicitudes de PQRSDF</h1>
+        <h1 id="title">Recepción de PQRSDF</h1>
       </div>
       <div class="card-bd">
 
-        <div class="alert" role="note">Los campos con (<strong>*</strong>) son obligatorios.</div>
-        <p class="note" style="margin-top:-6px">Use este formulario para radicar <em>Peticiones, Quejas, Reclamos, Sugerencias, Denuncias y Felicitaciones</em>.</p>
+        <div class="alert" role="note">
+          1) **Móvil y web** habilitado · 2) **Protección de datos (Ley 1581 de 2012)** · 3) Campos con (<strong>*</strong>) obligatorios.
+        </div>
 
-        <form novalidate>
-          <!-- Información básica -->
+        <form id="pqrsdfForm" novalidate>
+          <!-- 2.2 Selección de la opción -->
           <fieldset>
-            <legend>Información básica de la solicitud</legend>
+            <legend>2.2. Selección de la opción de la PQRSDF *</legend>
+            <!-- Usamos radios (una sola opción). Cambia a checkboxes si deseas permitir múltiples. -->
+            <div class="choice-list" role="radiogroup" aria-labelledby="pqrsdfTipo">
+              <label class="choice"><input type="radio" name="tipo" value="Petición" required> Petición</label>
+              <label class="choice"><input type="radio" name="tipo" value="Queja / Reclamo"> Queja / Reclamo</label>
+              <label class="choice"><input type="radio" name="tipo" value="Solicitud de información"> Solicitud de información</label>
+              <label class="choice"><input type="radio" name="tipo" value="Denuncia"> Denuncia</label>
+              <label class="choice"><input type="radio" name="tipo" value="Sugerencia / Propuesta"> Sugerencia / Propuesta</label>
+              <label class="choice"><input type="radio" name="tipo" value="Felicitación"> Felicitación</label>
+            </div>
+          </fieldset>
+
+          <!-- 2.2 Datos del solicitante / Anónimo -->
+          <fieldset>
+            <legend>2.2. Datos del solicitante (opcional si es anónimo)</legend>
+            <div class="inline" aria-label="¿Es anónimo?">
+              <label class="choice"><input type="radio" name="anonimo" value="Si"> Anónimo: Sí</label>
+              <label class="choice"><input type="radio" name="anonimo" value="No" checked> Anónimo: No</label>
+            </div>
+
+            <div class="row" id="datosIdentificacion">
+              <div>
+                <label for="nombre">Nombre y Apellidos / Razón Social *</label>
+                <input id="nombre" name="nombre" type="text" autocomplete="name" required />
+              </div>
+
+              <!-- 2.3 Tipo de documento -->
+              <div>
+                <label>Tipo de documento</label>
+                <div class="inline" role="radiogroup">
+                  <label class="choice"><input type="radio" name="tipoDoc" value="Cédula de Ciudadanía"> Cédula de Ciudadanía</label>
+                  <label class="choice"><input type="radio" name="tipoDoc" value="NUIP"> NUIP</label>
+                  <label class="choice"><input type="radio" name="tipoDoc" value="Cédula de Extranjería"> Cédula de Extranjería</label>
+                  <label class="choice"><input type="radio" name="tipoDoc" value="NIT"> NIT</label>
+                  <label class="choice"><input type="radio" name="tipoDoc" value="Pasaporte"> Pasaporte</label>
+                </div>
+              </div>
+
+              <!-- 2.4 Número de documento / NIT -->
+              <div>
+                <label for="numDoc">Número de documento o NIT</label>
+                <input id="numDoc" name="numDoc" type="text" inputmode="numeric" />
+              </div>
+            </div>
+          </fieldset>
+
+          <!-- 2.5 Modalidad de recepción de la respuesta -->
+          <fieldset>
+            <legend>2.5. Modalidad de recepción de la respuesta *</legend>
+            <div class="inline" role="radiogroup" aria-labelledby="modalidadResp">
+              <label class="choice"><input type="radio" name="modalidad" value="Correo electrónico" required> Correo electrónico</label>
+              <label class="choice"><input type="radio" name="modalidad" value="Dirección física de correspondencia"> Dirección física de correspondencia</label>
+            </div>
+
+            <!-- 2.6 Correo -->
+            <div class="row" id="campoCorreo">
+              <div>
+                <label for="correo">2.6. Correo electrónico *</label>
+                <input id="correo" name="correo" type="email" inputmode="email" autocomplete="email" />
+              </div>
+            </div>
+
+            <!-- 2.7 Dirección -->
+            <div class="row" id="campoDireccion" hidden>
+              <div>
+                <label for="barrio">Barrio/Vereda *</label>
+                <input id="barrio" name="barrio" type="text" />
+              </div>
+              <div>
+                <label for="municipio">Municipio/Distrito *</label>
+                <input id="municipio" name="municipio" type="text" />
+              </div>
+              <div>
+                <label for="pais">País (si aplica) *</label>
+                <input id="pais" name="pais" type="text" />
+              </div>
+            </div>
+          </fieldset>
+
+          <!-- 2.8 Número de contacto -->
+          <fieldset>
+            <legend>2.8. Número de contacto</legend>
             <div class="row">
               <div>
-                <label for="primerNombre">Primer nombre *</label>
-                <input id="primerNombre" name="primerNombre" type="text" required autocomplete="given-name" />
-              </div>
-              <div>
-                <label for="segundoNombre">Segundo nombre</label>
-                <input id="segundoNombre" name="segundoNombre" type="text" autocomplete="additional-name" />
-              </div>
-              <div>
-                <label for="primerApellido">Primer apellido *</label>
-                <input id="primerApellido" name="primerApellido" type="text" required autocomplete="family-name" />
-              </div>
-              <div>
-                <label for="segundoApellido">Segundo apellido</label>
-                <input id="segundoApellido" name="segundoApellido" type="text" />
-              </div>
-              <div>
-                <label for="email">Correo electrónico *</label>
-                <input id="email" name="email" type="email" required inputmode="email" autocomplete="email" />
-              </div>
-              <div>
-                <label for="telefono">Número teléfono contacto</label>
+                <label for="telefono">Número de contacto</label>
                 <input id="telefono" name="telefono" type="tel" inputmode="numeric" autocomplete="tel" />
               </div>
-              <div>
-                <label for="descripcion">Descripción *</label>
-                <textarea id="descripcion" name="descripcion" required placeholder="Cuéntenos brevemente su solicitud..."></textarea>
-              </div>
             </div>
           </fieldset>
 
-          <!-- Información de la PQRSDF -->
+          <!-- 2.9 Objeto -->
           <fieldset>
-            <legend>Información de la PQRSDF</legend>
-            <div class="row">
+            <legend>2.9. Objeto de la PQRSDF *</legend>
+            <textarea id="objeto" name="objeto" required placeholder="Describa claramente el motivo de su petición, queja, reclamo, solicitud de información, denuncia, sugerencia o felicitación..."></textarea>
+          </fieldset>
+
+          <!-- 2.10 Adjuntos -->
+          <fieldset>
+            <legend>2.10. Adjuntar documentos o anexos</legend>
+            <div class="inline" aria-label="¿Adjunta documentos?">
+              <label class="choice"><input type="radio" name="adjunta" value="Si"> Sí</label>
+              <label class="choice"><input type="radio" name="adjunta" value="No" checked> No</label>
+            </div>
+            <div class="row" id="subidaAdjunto" hidden>
               <div>
-                <label for="tipoSolicitud">Tipo de solicitud *</label>
-                <select id="tipoSolicitud" name="tipoSolicitud" required>
-                  <option value="">Seleccione…</option>
-                  <option>Petición</option>
-                  <option>Queja</option>
-                  <option>Reclamo</option>
-                  <option>Sugerencia</option>
-                  <option>Denuncia</option>
-                  <option>Felicitación</option>
-                </select>
-              </div>
-              <div>
-                <label for="tipoSolicitante">Tipo de solicitante *</label>
-                <select id="tipoSolicitante" name="tipoSolicitante" required>
-                  <option value="">Seleccione…</option>
-                  <option>Persona Natural</option>
-                  <option>Persona Jurídica</option>
-                  <option>Niñas, niños y adolescentes</option>
-                  <option>Apoderado</option>
-                </select>
-              </div>
-              <div>
-                <label for="tipoDoc">Tipo de documento *</label>
-                <select id="tipoDoc" name="tipoDoc" required>
-                  <option value="">Seleccione…</option>
-                  <option>Cédula de ciudadanía</option>
-                  <option>Cédula de extranjería</option>
-                  <option>Pasaporte</option>
-                  <option>Registro civil</option>
-                  <option>Tarjeta de identidad</option>
-                </select>
-              </div>
-              <div>
-                <label for="numDoc">Número de documento *</label>
-                <input id="numDoc" name="numDoc" type="number" required inputmode="numeric" />
-              </div>
-              <div>
-                <label for="razonSocial">Razón social</label>
-                <input id="razonSocial" name="razonSocial" type="text" />
-              </div>
-              <div>
-                <label for="nit">NIT</label>
-                <input id="nit" name="nit" type="number" inputmode="numeric" />
-              </div>
-              <div>
-                <label for="direccion">Dirección *</label>
-                <input id="direccion" name="direccion" type="text" required autocomplete="street-address" />
-              </div>
-              <div>
-                <label for="pais">País</label>
-                <select id="pais" name="pais">
-                  <option value="">--Seleccionar--</option>
-                  <option selected>Colombia</option>
-                  <option>Argentina</option>
-                  <option>Chile</option>
-                  <option>España</option>
-                  <option>México</option>
-                  <option>Perú</option>
-                </select>
-              </div>
-              <div>
-                <label for="depto">Departamento</label>
-                <select id="depto" name="depto">
-                  <option value="">--Seleccionar--</option>
-                  <option>Antioquia</option>
-                  <option>Bogotá D.C</option>
-                  <option>Valle del Cauca</option>
-                  <option>Atlántico</option>
-                </select>
-              </div>
-              <div>
-                <label for="adjunto">Archivo adjunto</label>
+                <label for="adjunto">Subir archivo</label>
                 <input id="adjunto" name="adjunto" type="file" aria-describedby="adj-help" />
-                <div id="adj-help" class="help">Máximo 150&nbsp;MB. Extensiones permitidas: doc, xls, xlsx, ppt, tif, jpg, gif, pdf, txt, rar, zip, csv, odt, avi, mpg, tar, docx, ods, mp4, mp3.</div>
-              </div>
-              <div>
-                <label for="medio">Medio de respuesta *</label>
-                <select id="medio" name="medio" required>
-                  <option value="">Seleccione…</option>
-                  <option>Correo electrónico</option>
-                  <option>Portal del Hospital</option>
-                </select>
-              </div>
-              <div>
-                <label class="mini" for="terminos">
-                  <input id="terminos" name="terminos" type="checkbox" required />
-                  Acepto los <a href="#" target="_blank" rel="noopener">términos y condiciones del uso de mis datos</a> *
-                </label>
+                <div id="adj-help" class="help">Máx. 150 MB. Extensiones: doc, xls, xlsx, ppt, pdf, jpg, png, gif, txt, zip, rar, csv, odt, mp4, mp3.</div>
               </div>
             </div>
           </fieldset>
 
-          <!-- (Se eliminó Verificación / reCAPTCHA según tu solicitud) -->
+          <!-- 2.11 Aviso de aceptación -->
+          <fieldset>
+            <legend>2.11. Aviso de aceptación de condiciones *</legend>
+            <label class="mini" for="acepta">
+              <input id="acepta" name="acepta" type="checkbox" required />
+              Declaro que la información es veraz y autorizo el tratamiento de mis datos personales de acuerdo con la Ley 1581 de 2012. 
+              <a href="#" target="_blank" rel="noopener">Ver política de tratamiento de datos</a>.
+            </label>
+          </fieldset>
 
+          <!-- 2.12 Botón Enviar -->
           <div class="actions">
             <button class="btn btn-ghost" type="reset">Limpiar</button>
-            <button class="btn btn-primary" type="submit">Enviar solicitud</button>
+            <button class="btn btn-primary" type="submit">Enviar</button>
           </div>
         </form>
-      </div>
-    </section>
 
-    <!-- Sección lateral convertida a tarjetas bajo el formulario (misma columna) -->
-    <section class="card" aria-labelledby="ayuda" style="margin-top:16px">
-      <div class="card-hd"><h2 id="ayuda">Ayuda y recomendaciones</h2></div>
-      <div class="card-bd">
-        <ul style="margin:0; padding-left:18px">
-          <li>Describe tu solicitud con claridad y aporta fechas/datos relevantes.</li>
-          <li>Adjunta documentos que soporten tu petición (si aplica).</li>
-          <li>Verifica tu correo; allí llegará el acuse de recibido.</li>
-        </ul>
-      </div>
-    </section>
+        <!-- Mensaje de resultado -->
+        <div id="resultado" class="alert" role="status" style="display:none; margin-top:16px"></div>
+        <p class="note">Este es un prototipo listo para integrar con su backend (HTTPS). No incluye reCAPTCHA a solicitud expresa.</p>
 
-    <section class="card" aria-labelledby="legal" style="margin-top:16px">
-      <div class="card-hd"><h2 id="legal">Políticas</h2></div>
-      <div class="card-bd mini">
-        <p><a href="#" target="_blank" rel="noopener">Política de privacidad de datos</a></p>
-        <p><a href="#" target="_blank" rel="noopener">Política de uso de cookies</a></p>
       </div>
     </section>
   </main>
@@ -287,19 +262,114 @@
   <footer>
     <div class="container footer-inner">
       <div class="copy">© 2025 E.S.E. Hospital San Jorge de Ayapel — Todos los derechos reservados</div>
-      <div class="mini">Versión ligera del formulario PQRSDF (sin rastreadores ni scripts externos).</div>
+      <div class="mini">Versión ligera, accesible y optimizada para móviles.</div>
     </div>
   </footer>
 
-  <!-- Validación mínima accesible -->
+  <!-- Lógica mínima y validaciones condicionales -->
   <script>
     (function(){
-      const form = document.querySelector('form');
-      form?.addEventListener('submit', (e)=>{
+      const form = document.getElementById('pqrsdfForm');
+      const resultado = document.getElementById('resultado');
+
+      const anonSi = form.querySelector('input[name="anonimo"][value="Si"]');
+      const anonNo = form.querySelector('input[name="anonimo"][value="No"]');
+      const datosIdent = document.getElementById('datosIdentificacion');
+      const nombre = document.getElementById('nombre');
+      const tipoDocRadios = form.querySelectorAll('input[name="tipoDoc"]');
+      const numDoc = document.getElementById('numDoc');
+
+      const modalidadRadios = form.querySelectorAll('input[name="modalidad"]');
+      const campoCorreo = document.getElementById('campoCorreo');
+      const correo = document.getElementById('correo');
+      const campoDir = document.getElementById('campoDireccion');
+      const barrio = document.getElementById('barrio');
+      const municipio = document.getElementById('municipio');
+      const pais = document.getElementById('pais');
+
+      const adjSi = form.querySelector('input[name="adjunta"][value="Si"]');
+      const adjNo = form.querySelector('input[name="adjunta"][value="No"]');
+      const subidaAdj = document.getElementById('subidaAdjunto');
+      const adj = document.getElementById('adjunto');
+
+      function setAnonimo(){
+        const esAnon = anonSi.checked;
+        datosIdent.hidden = esAnon;
+
+        // Alterna requeridos
+        nombre.required = !esAnon;
+        numDoc.required = false; // solo si seleccionan tipoDoc y no son anónimos
+        tipoDocRadios.forEach(r => r.required = false);
+
+        if(esAnon){
+          nombre.value = '';
+          numDoc.value = '';
+          tipoDocRadios.forEach(r => r.checked = false);
+        }
+      }
+
+      function setModalidad(){
+        const val = [...modalidadRadios].find(r => r.checked)?.value;
+        if(val === 'Correo electrónico'){
+          campoCorreo.hidden = false;
+          correo.required = true;
+
+          campoDir.hidden = true;
+          [barrio,municipio,pais].forEach(i => { i.required = false; i.value = '' });
+        }else if(val === 'Dirección física de correspondencia'){
+          campoCorreo.hidden = true;
+          correo.required = false; 
+          correo.value = '';
+
+          campoDir.hidden = false;
+          [barrio,municipio,pais].forEach(i => i.required = true);
+        }
+      }
+
+      function setAdjunto(){
+        const si = adjSi.checked;
+        subidaAdj.hidden = !si;
+        if(si){ adj.required = true; } else { adj.required = false; adj.value=''; }
+      }
+
+      // Listeners
+      [anonSi, anonNo].forEach(el => el.addEventListener('change', setAnonimo));
+      modalidadRadios.forEach(el => el.addEventListener('change', setModalidad));
+      [adjSi, adjNo].forEach(el => el.addEventListener('change', setAdjunto));
+
+      // Estado inicial
+      setAnonimo();
+      setModalidad();
+      setAdjunto();
+
+      // Validación accesible
+      form.addEventListener('submit', (e)=>{
         if(!form.checkValidity()){
           e.preventDefault();
           form.querySelectorAll(':invalid')[0]?.focus();
+          resultado.style.display='block';
+          resultado.innerHTML = 'Por favor revisa los campos obligatorios o con errores.';
+          return;
         }
+
+        // DEMO: evitar envío real (integra tu endpoint POST aquí)
+        e.preventDefault();
+        resultado.style.display='block';
+        resultado.innerHTML = 'Tu PQRSDF fue validada localmente. Integra el envío al servidor para generar el radicado.';
+        
+        // EJEMPLO de envío (descomenta y ajusta):
+        /*
+        fetch('https://tu-api/endpoint-pqrsdf', {
+          method:'POST',
+          headers:{'Content-Type':'application/json'},
+          body: JSON.stringify(Object.fromEntries(new FormData(form)))
+        })
+        .then(r => r.ok ? r.json() : Promise.reject(r))
+        .then(data => {
+          resultado.innerHTML = 'Radicado creado: ' + (data.radicado || 'N/A');
+        })
+        .catch(()=> resultado.innerHTML = 'No se pudo enviar. Intente nuevamente.');
+        */
       });
     })();
   </script>
