@@ -1,7 +1,11 @@
 {
-  "cleanUrls": true,
-  "rewrites": [
-    { "source": "/pages/(.*\\.html)", "destination": "/public/pages/$1" },
-    { "source": "/pages/([^./]+)$",  "destination": "/public/pages/$1.html" }
+  "version": 2,
+  "framework": null,
+  "builds": [],
+  "routes": [
+    {
+      "src": "/(.*)",
+      "dest": "/$1"
+    }
   ]
 }

@@ -1,7 +1,7 @@
 {
-  "name": "my-dashboard-project",
+  "name": "visor-hsj-ayapel",
   "private": true,
   "scripts": {
-    "build": "node scripts/generate-manifest.mjs"
+    "build": "echo \"No build step\""
   }
 }

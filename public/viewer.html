@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Visor HTML</title>
+  <style>
+    :root {
+      --primary: #13b8c5;
+      --bg: #0b1020;
+      --panel: #10162a;
+      --txt: #e8ecf7;
+      --muted: #9aa7c7;
+      --border: rgba(255,255,255,.1);
+    }
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{margin:0; background:var(--bg); color:var(--txt); font-family:ui-sans-serif,system-ui,Segoe UI,Roboto}
+    header{display:flex; align-items:center; justify-content:space-between; gap:10px; padding:12px 16px; background:var(--panel); border-bottom:1px solid var(--border); position:sticky; top:0}
+    .title{font-weight:600}
+    .actions{display:flex; gap:8px}
+    a.btn, button.btn{appearance:none; border:1px solid var(--border); background:transparent; color:var(--txt); padding:8px 10px; border-radius:10px; text-decoration:none; font-size:13px}
+    a.btn.primary, button.btn.primary{background:var(--primary); color:#041017; border-color:transparent; font-weight:600}
+    .frame{position:fixed; inset:60px 0 0; border:0; width:100%; height:calc(100% - 60px); background:#fff}
+    .name{color:var(--muted); font-size:12px; margin-top:2px}
+  </style>
+</head>
+<body>
+  <header>
+    <div>
+      <div class="title">Visor HTML</div>
+      <div id="name" class="name"></div>
+    </div>
+    <div class="actions">
+      <a class="btn" href="/" title="Inicio">← Volver al índice</a>
+      <a id="openTab" class="btn primary" href="#" target="_blank" rel="noopener">Abrir pestaña</a>
+    </div>
+  </header>
+  <iframe id="frame" class="frame" src="about:blank" loading="eager"></iframe>
+
+  <script>
+    function getParam(name){
+      const u = new URL(window.location.href);
+      return u.searchParams.get(name) || '';
+    }
+    const file = getParam('file');
+    const url = '/htmls/' + encodeURIComponent(file);
+    const frame = document.getElementById('frame');
+    const openTab = document.getElementById('openTab');
+    const nameEl = document.getElementById('name');
+    if(file){
+      frame.src = url;
+      openTab.href = url;
+      nameEl.textContent = file;
+    } else {
+      nameEl.textContent = 'Falta ?file=archivo.html';
+    }
+  </script>
+</body>
+</html>
