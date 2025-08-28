@@ -1,0 +1,19 @@
+{
+  "items": [
+    {
+      "href": "/pages/contacto.html",
+      "file": "contacto.html",
+      "title": "Contacto"
+    },
+    {
+      "href": "/pages/page1.html",
+      "file": "page1.html",
+      "title": "Página 1"
+    },
+    {
+      "href": "/pages/page2.html",
+      "file": "page2.html",
+      "title": "Página 2 de pruebas"
+    }
+  ]
+}

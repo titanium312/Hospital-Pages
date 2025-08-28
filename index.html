@@ -1,0 +1,111 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Dashboard de Páginas</title>
+  <style>
+    :root { --fg:#111; --muted:#666; --bg:#fafafa; --card:#fff; --border:#eaeaea; }
+    *{box-sizing:border-box}
+    html,body{margin:0;padding:0;background:var(--bg);color:var(--fg);font-family:system-ui,-apple-system,Segoe UI,Roboto,Ubuntu,Cantarell,'Helvetica Neue',Arial;}
+    header{padding:24px 20px;border-bottom:1px solid var(--border);background:var(--card)}
+    h1{margin:0 0 6px 0;font-size:24px}
+    .sub{color:var(--muted);font-size:14px}
+    main{max-width:900px;margin:0 auto;padding:24px}
+    .toolbar{display:flex;flex-wrap:wrap;gap:12px;align-items:center;margin-bottom:16px}
+    .toolbar input[type="search"]{flex:1;min-width:240px;padding:10px 12px;border:1px solid var(--border);border-radius:10px;background:#fff}
+    .toggle{display:flex;gap:8px;align-items:center}
+    .list{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:12px}
+    .card{background:var(--card);border:1px solid var(--border);border-radius:14px;padding:14px;display:flex;gap:10px;align-items:flex-start}
+    .card h3{margin:0 0 6px 0;font-size:16px;line-height:1.2}
+    .card .file{color:var(--muted);font-size:12px;word-break:break-all}
+    .card a{display:inline-block;margin-top:8px;text-decoration:none;border:1px solid var(--border);padding:8px 10px;border-radius:10px}
+    .empty{padding:24px;border:1px dashed var(--border);border-radius:14px;color:var(--muted);text-align:center;background:#fff}
+    footer{padding:20px;color:var(--muted);text-align:center}
+    .count{font-variant-numeric: tabular-nums;}
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Dashboard de Páginas</h1>
+    <div class="sub">Detecta y lista todos los <code>.html</code> en <code>/public/pages/</code></div>
+  </header>
+  <main>
+    <div class="toolbar">
+      <input id="q" type="search" placeholder="Filtrar por título o archivo..." />
+      <div class="toggle">
+        <label><input type="radio" name="target" value="_self" checked> Misma pestaña</label>
+        <label><input type="radio" name="target" value="_blank"> Nueva pestaña</label>
+      </div>
+      <div class="count" id="count"></div>
+    </div>
+    <div id="list" class="list"></div>
+    <div id="empty" class="empty" style="display:none">No se encontraron páginas. Asegúrate de tener archivos <code>.html</code> dentro de <code>public/pages/</code>.</div>
+  </main>
+  <footer>Hecho para Vercel · Index generado desde <code>pages-list.json</code></footer>
+  <script>
+    const state = { items: [], filtered: [], target: '_self' };
+    const $list = document.getElementById('list');
+    const $empty = document.getElementById('empty');
+    const $q = document.getElementById('q');
+    const $count = document.getElementById('count');
+    const targetRadios = document.querySelectorAll('input[name="target"]');
+
+    targetRadios.forEach(r => r.addEventListener('change', () => {
+      state.target = document.querySelector('input[name="target"]:checked').value;
+      render();
+    }));
+
+    $q.addEventListener('input', () => {
+      filter();
+      render();
+    });
+
+    async function load() {
+      try {
+        const res = await fetch('pages-list.json', { cache: 'no-store' });
+        if (!res.ok) throw new Error('No se pudo leer pages-list.json');
+        const { items } = await res.json();
+        state.items = Array.isArray(items) ? items : [];
+        filter();
+        render();
+      } catch (e) {
+        console.error(e);
+        state.items = [];
+        filter();
+        render();
+      }
+    }
+
+    function filter() {
+      const term = $q.value.trim().toLowerCase();
+      state.filtered = !term
+        ? state.items
+        : state.items.filter(it => (it.title || '').toLowerCase().includes(term) || (it.file || '').toLowerCase().includes(term));
+      $count.textContent = state.filtered.length ? state.filtered.length + ' páginas' : '';
+    }
+
+    function sanitize(text){ return String(text || '').replace(/[<>&]/g, c => ({'<':'&lt;','>':'&gt;','&':'&amp;'}[c])); }
+
+    function render() {
+      $list.innerHTML = '';
+      if (!state.filtered.length) { $empty.style.display = 'block'; return; }
+      $empty.style.display = 'none';
+      for (const it of state.filtered) {
+        const card = document.createElement('div');
+        card.className = 'card';
+        card.innerHTML = \`
+          <div>
+            <h3>\${sanitize(it.title || it.file)}</h3>
+            <div class="file">\${sanitize(it.file)} · <code>\${sanitize(it.href)}</code></div>
+            <a href="\${it.href}" target="\${state.target}" rel="noopener">Abrir</a>
+          </div>
+        \`;
+        $list.appendChild(card);
+      }
+    }
+
+    load();
+  </script>
+</body>
+</html>

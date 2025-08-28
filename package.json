@@ -1,0 +1,7 @@
+{
+  "name": "my-dashboard-project",
+  "private": true,
+  "scripts": {
+    "build": "node scripts/generate-manifest.mjs"
+  }
+}
