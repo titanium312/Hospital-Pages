@@ -1,0 +1,279 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Información de Trámites — Paleta personalizada</title>
+  <meta name="description" content="Sección 'Información de Trámites' recreada en un solo archivo, usando la paleta solicitada.">
+  <style>
+    /* ===== Paleta solicitada =====
+       white, #000, #666, #24c8f1, #c3f6f7, #f8f9fa, #a3d5f1, #eee, #f0f0f0, #eef6fb
+    */
+    :root{
+      --white:#ffffff;
+      --black:#000;
+      --gray-700:#666;
+      --primary:#24c8f1;
+      --primary-50:#c3f6f7;
+      --primary-100:#a3d5f1;
+      --bg:#f8f9fa;
+      --border:#eee;
+      --border-2:#f0f0f0;
+      --panel:#eef6fb;
+
+      --text:#000;
+      --text-muted:#666;
+
+      --radius:14px;
+      --shadow:0 10px 25px rgba(0,0,0,.06);
+    }
+
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{
+      margin:0;
+      background:var(--bg);
+      color:var(--text);
+      font:16px/1.6 system-ui,-apple-system,Segoe UI,Roboto,Ubuntu,Cantarell,Noto Sans,Arial;
+    }
+    a{color:var(--primary); text-decoration:none}
+    a:hover{text-decoration:underline}
+
+    .container{width:min(1100px,92vw); margin-inline:auto; padding:24px}
+
+    header.site{
+      position:sticky; top:0;
+      background:rgba(255,255,255,.8);
+      backdrop-filter:saturate(1.2) blur(6px);
+      border-bottom:1px solid var(--border);
+      z-index:40;
+    }
+    .crumbs{color:var(--text-muted); font-size:.925rem}
+    .title-wrap{display:flex; gap:.75rem; align-items:center; margin-top:6px}
+    .badge{
+      display:inline-flex; align-items:center; gap:.5rem;
+      background:var(--primary-50);
+      color:#000;
+      border:1px solid var(--primary-100);
+      padding:.25rem .6rem;
+      border-radius:999px;
+      font-size:.8rem; font-weight:700;
+    }
+
+    .hero{
+      margin-top:18px; border-radius:var(--radius);
+      overflow:hidden; border:1px solid var(--border);
+      box-shadow:var(--shadow);
+      background:var(--panel);
+    }
+    .hero img{display:block; width:100%; height:auto}
+
+    .section{margin-top:26px}
+    .card{
+      background:var(--white);
+      border:1px solid var(--border);
+      border-radius:var(--radius);
+      box-shadow:var(--shadow);
+      overflow:clip;
+    }
+    .card .hd{
+      padding:18px 20px;
+      border-bottom:1px solid var(--border-2);
+      background:linear-gradient(180deg, var(--panel), var(--white));
+    }
+    .card .bd{padding:18px 20px}
+
+    .muted{color:var(--text-muted)}
+
+    .grid{display:grid; gap:18px}
+    @media(min-width:900px){
+      .grid.cols-2{grid-template-columns:1.1fr 1fr}
+      .grid.cols-3{grid-template-columns:repeat(3,1fr)}
+    }
+
+    .tips{display:grid; gap:10px; margin-top:10px}
+    .tip{
+      padding:10px 12px;
+      border-radius:10px;
+      border:1px solid var(--border);
+      background:var(--panel);
+      color:var(--text);
+    }
+    .pill{
+      display:inline-flex; align-items:center; gap:8px;
+      padding:8px 10px;
+      border-radius:999px;
+      border:1px solid var(--border);
+      background:var(--panel);
+      color:var(--text);
+      font-size:.9rem;
+    }
+
+    .cards{display:grid; gap:14px}
+    @media(min-width:760px){.cards{grid-template-columns:repeat(2,1fr)}}
+    @media(min-width:1100px){.cards{grid-template-columns:repeat(3,1fr)}}
+
+    .tram-card{
+      border:1px solid var(--border);
+      border-radius:12px;
+      padding:16px;
+      background:var(--white);
+      display:flex; flex-direction:column; gap:10px;
+    }
+    .tram-card h4{margin:0}
+    .cta-row{display:flex; gap:10px; flex-wrap:wrap; margin-top:8px}
+
+    .btn{
+      display:inline-block;
+      padding:10px 12px;
+      border-radius:10px;
+      border:1px solid var(--primary);
+      background:var(--primary);
+      color:var(--white);
+      font-weight:600;
+    }
+    .btn--ghost{
+      background:var(--panel);
+      color:var(--black);
+      border-color:var(--border);
+    }
+
+    footer{
+      text-align:center;
+      color:var(--text-muted);
+      font-size:.9rem;
+      margin:28px 0 14px;
+    }
+  </style>
+</head>
+<body>
+  <header class="site">
+    <div class="container">
+      <div class="crumbs">Inicio ▸ Atención al ciudadano ▸ <strong>Información de Trámites</strong></div>
+      <div class="title-wrap">
+        <span class="badge">Paleta personalizada</span>
+        <h1 style="margin:0">Información de Trámites</h1>
+      </div>
+    </div>
+  </header>
+
+  <main class="container">
+    <figure class="hero">
+      <img alt="Banner informativo" loading="lazy" decoding="async"
+           src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0naHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmcnIHdpZHRoPScxNjAwJyBoZWlnaHQ9JzUyMCc+CiAgPGRlZnM+CiAgICA8bGluZWFyR3JhZGllbnQgaWQ9J2cnIHgxPScwJyB5MT0nMCcgeDI9JzEnIHkyPScxJz4KICAgICAgPHN0b3Agb2Zmc2V0PScwJScgc3RvcC1jb2xvcj0nI2EzZDVmMScvPgogICAgICA8c3RvcCBvZmZzZXQ9JzEwMCUnIHN0b3AtY29sb3I9JyMyNGM4ZjEnLz4KICAgIDwvbGluZWFyR3JhZGllbnQ+CiAgICA8cGF0dGVybiBpZD0nZG90cycgeD0nMCcgeT0nMCcgd2lkdGg9JzI0JyBoZWlnaHQ9JzI0JyBwYXR0ZXJuVW5pdHM9J3VzZXJTcGFjZU9uVXNlJz4KICAgICAgPGNpcmNsZSBjeD0nMicgY3k9JzInIHI9JzInIGZpbGw9JyNjM2Y2ZjcnIG9wYWNpdHk9Jy43Jy8+CiAgICA8L3BhdHRlcm4+CiAgPC9kZWZzPgogIDxyZWN0IHdpZHRoPScxMDAlJyBoZWlnaHQ9JzEwMCUnIGZpbGw9J3VybCgjZyknLz4KICA8cmVjdCB3aWR0aD0nMTAwJScgaGVpZ2h0PScxMDAlJyBmaWxsPSd1cmwoI2RvdHMpJyBvcGFjaXR5PScuMicvPgogIDxnIGZvbnQtZmFtaWx5PSdzeXN0ZW0tdWksIC1hcHBsZS1zeXN0ZW0sIFNlZ29lIFVJLCBSb2JvdG8nIGZpbGw9JyMwMDAnPgogICAgPHRleHQgeD0nNjAnIHk9JzEyMCcgZm9udC1zaXplPSc0MCcgZm9udC13ZWlnaHQ9JzgwMCc+SW5mb3JtYWNpw7NuIGRlIFRyw6FtaXRlczwvdGV4dD4KICAgIDx0ZXh0IHg9JzYwJyB5PScxNzAnIGZvbnQtc2l6ZT0nMjAnIGZpbGw9JyM2NjYnPlNlY2Npw7NuIHJlY3JlYWRhIOKAlCBwYWxldGEgcGVyc29uYWxpemFkYTwvdGV4dD4KICA8L2c+Cjwvc3ZnPg==">
+    </figure>
+
+    <section class="section card" id="entrega-historia-clinica">
+      <div class="hd"><h2 style="margin:0">Entrega de Historia Clínica</h2></div>
+      <div class="bd grid cols-2">
+        <div>
+          <p class="muted">
+            Según la <strong>Resolución 1995 de 1999</strong>, la historia clínica es un documento <em>privado y reservado</em>.
+            Registra la situación de salud del paciente y las actuaciones del equipo asistencial. 
+            Terceros solo pueden conocerla con autorización del titular o en los casos previstos por la ley.
+          </p>
+          <h3 style="margin:14px 0 8px">¿Quiénes pueden acceder?</h3>
+          <ul>
+            <li>El propio usuario (paciente).</li>
+            <li>El equipo de salud que participa en su atención.</li>
+            <li>Autoridades sanitarias o judiciales, cuando aplique.</li>
+            <li>Personas autorizadas por la normatividad vigente.</li>
+          </ul>
+        </div>
+        <div>
+          <h3 style="margin:0 0 8px">Requisitos habituales</h3>
+          <div class="tips">
+            <div class="tip"><strong>Si eres paciente:</strong> presenta tu documento de identidad.</div>
+            <div class="tip"><strong>Si reclamas por un tercero:</strong> carta con el motivo, identificación y soportes de parentesco (registro civil, matrimonio, declaraciones extrajuicio).</div>
+            <div class="tip"><strong>Si está hospitalizado:</strong> acércate al Archivo Clínico, diligencia el formato e incluye documento de identidad.</div>
+          </div>
+          <p class="muted" style="margin-top:10px">Nota: los pasos exactos pueden variar según lineamientos internos.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="section grid cols-2">
+      <article class="card">
+        <div class="hd"><h3 style="margin:0">¿Qué es un servicio?</h3></div>
+        <div class="bd">
+          <p class="muted">Conjunto de acciones orientadas a generar valor y beneficios para los usuarios.</p>
+          <span class="pill">Más información en el portal institucional</span>
+        </div>
+      </article>
+      <article class="card">
+        <div class="hd"><h3 style="margin:0">¿Qué es un trámite?</h3></div>
+        <div class="bd">
+          <p class="muted">Secuencia de actuaciones reguladas para ejercer un derecho o cumplir una obligación del usuario.</p>
+          <a class="pill" href="https://www.gov.co/" target="_blank" rel="noopener">Conozca sus trámites en GOV.CO ↗</a>
+        </div>
+      </article>
+    </section>
+
+    <section class="section card">
+      <div class="hd"><h2 style="margin:0">Trámites y servicios</h2></div>
+      <div class="bd cards">
+        <article class="tram-card">
+          <h4>Certificado de defunción por muerte natural</h4>
+          <p class="muted">Constancia oficial del fallecimiento de una persona.</p>
+          <div class="cta-row"><a class="btn" href="https://www.gov.co/" target="_blank" rel="noopener">Ir a GOV.CO</a></div>
+        </article>
+        <article class="tram-card">
+          <h4>Certificado de nacido vivo</h4>
+          <p class="muted">Constancia del nacimiento expedida por autoridad competente.</p>
+          <div class="cta-row"><a class="btn" href="https://www.gov.co/" target="_blank" rel="noopener">Ir a GOV.CO</a></div>
+        </article>
+        <article class="tram-card">
+          <h4>Servicio de vacunación</h4>
+          <p class="muted">Aplicación de biológicos del PAI y lineamientos vigentes.</p>
+          <div class="cta-row"><a class="btn" href="https://www.gov.co/" target="_blank" rel="noopener">Ir a GOV.CO</a></div>
+        </article>
+        <article class="tram-card">
+          <h4>Asignación de cita para servicios en salud</h4>
+          <p class="muted">Agenda una cita de acuerdo con tu necesidad de atención.</p>
+          <div class="cta-row"><a class="btn" href="https://www.gov.co/" target="_blank" rel="noopener">Ir a GOV.CO</a></div>
+        </article>
+        <article class="tram-card">
+          <h4>Terapia</h4>
+          <p class="muted">Procesos de habilitación o rehabilitación integral.</p>
+          <div class="cta-row"><a class="btn" href="https://www.gov.co/" target="_blank" rel="noopener">Ir a GOV.CO</a></div>
+        </article>
+        <article class="tram-card">
+          <h4>Radiología e imágenes diagnósticas</h4>
+          <p class="muted">Obtener imágenes con fines diagnósticos o terapéuticos.</p>
+          <div class="cta-row"><a class="btn" href="https://www.gov.co/" target="_blank" rel="noopener">Ir a GOV.CO</a></div>
+        </article>
+        <article class="tram-card">
+          <h4>Atención inicial de urgencia</h4>
+          <p class="muted">Atención prioritaria ante alteraciones que comprometen la vida o funcionalidad.</p>
+          <div class="cta-row"><a class="btn" href="https://www.gov.co/" target="_blank" rel="noopener">Ir a GOV.CO</a></div>
+        </article>
+        <article class="tram-card">
+          <h4>Dispensación de medicamentos y dispositivos</h4>
+          <p class="muted">Entrega de medicamentos o dispositivos con información de uso adecuado.</p>
+          <div class="cta-row"><a class="btn" href="https://www.gov.co/" target="_blank" rel="noopener">Ir a GOV.CO</a></div>
+        </article>
+        <article class="tram-card">
+          <h4>Historia clínica</h4>
+          <p class="muted">Obtención de copia de la historia clínica según requisitos legales.</p>
+          <div class="cta-row"><a class="btn" href="https://www.gov.co/" target="_blank" rel="noopener">Ir a GOV.CO</a></div>
+        </article>
+        <article class="tram-card">
+          <h4>Certificado de paz y salvo</h4>
+          <p class="muted">Constancia de que no se registran deudas con la entidad.</p>
+          <div class="cta-row"><a class="btn btn--ghost" href="#" target="_blank" rel="noopener">Solicitar</a></div>
+        </article>
+        <article class="tram-card">
+          <h4>Radicación de PQRSD</h4>
+          <p class="muted">Recepción de peticiones, quejas, reclamos, sugerencias y denuncias.</p>
+          <div class="cta-row">
+            <a class="btn" href="#" target="_blank" rel="noopener">RADICA TU PQRSDF</a>
+            <a class="btn btn--ghost" href="#" target="_blank" rel="noopener">CONSULTA EL ESTADO</a>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <footer>Sección recreada con tu paleta de colores. Sustituye enlaces y textos según corresponda.</footer>
+  </main>
+</body>
+</html>

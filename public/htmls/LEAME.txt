@@ -1,6 +1,0 @@
-Coloque aquí sus archivos .html para que el índice los liste automáticamente.
-Estructura esperada: /public/htmls/archivo.html
-
-Sugerencias:
-- Nombres de archivo sin espacios o con guiones.
-- Si su HTML depende de CSS/JS/imagenes, colóquelos en /public/assets o subcarpetas dentro de /public/htmls.
